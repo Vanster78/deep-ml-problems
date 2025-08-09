@@ -84,9 +84,9 @@ def compare_outputs(actual, expected, rtol=1e-5, atol=1e-8):
             # Try converting expected to torch tensor if it's a list/tuple/numpy array
             try:
                 if np is not None and isinstance(expected, np.ndarray):
-                    expected = torch.from_numpy(expected)
+                    expected = torch.from_numpy(expected, dtype=actual.dtype)
                 else:
-                    expected = torch.tensor(expected)
+                    expected = torch.tensor(expected, dtype=actual.dtype)
             except (TypeError, ValueError):
                 return False # Cannot convert expected to torch tensor
         
